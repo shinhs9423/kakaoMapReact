@@ -1,0 +1,20 @@
+.viewMode_wrap {
+    display : flex;
+    justify-content: center;
+    gap: 1px;
+}
+.viewMode_btn {
+    border: 0;
+    padding:10px 20px;
+    background:#999;
+    color:#fff;
+}
+.viewMode_btn.active {
+    background:#333;
+    color:#fff;
+}
+.viewMode_btn:hover {
+    background:#111;
+    color:#fff;
+}
+section {margin-bottom:50px;}

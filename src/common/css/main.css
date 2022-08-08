@@ -1,3 +1,14 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#suggest li {
+    padding:5px;
+}
+#suggest li:hover {
+    background-color: #f5f5f5;
+}
 .viewMode_wrap {
     display : flex;
     justify-content: center;

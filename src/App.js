@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="wrap">
       <div className="position_wrap">  
-        <div className="position_child" style={{position:"absolute", zIndex:"100",boxShadow : "0px 0px 20px #333", width:"20%",height:"100vh", background:"#fff"}}>
+        <div className="position_child" style={{position:"absolute", zIndex:"100",boxShadow : "0px 0px 20px #333", width:"20%",height:"100vh", background:"#fff", minWidth:"280px"}}>
           <Logo />
           <ViewMode />
           <SearchForm />

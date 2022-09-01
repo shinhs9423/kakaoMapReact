@@ -1,5 +1,5 @@
 const express = require('express')
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 // const cors = require('cors');
 const axios = require('axios');
 
@@ -35,8 +35,8 @@ let books = [
 
 // app.use(cors());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World, from express');

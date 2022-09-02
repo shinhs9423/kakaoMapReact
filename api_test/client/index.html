@@ -1,15 +1,78 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Document</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script>
+        console.log('inline db');
+        /* DB 생성 시작 */
+
+        let dbName = "광고집행";
+        // DB를 전역에서 사용하기 위한 변수
+
+        const DBRequest = indexedDB.open(dbName, 1);
+        // 식별자 = indexedDB.open('DB이름', 버전);
+        // 버전으로 addEventListener('upgradeneeded',function(event){ });를 실행시킬 수 있다.
+        // 브라우저가 리로드 되면서 버전을 확인하고, 버전이 같지 않을때 실행된다.
+
+        DBRequest.addEventListener('success', function (event) {
+            // DB가 생성되면 동작하는 함수
+            console.log('success');
+            db = event.target.result;
+            // 생성된 DB의 ref를 전역변수 db에 담는다
+        });
+
+        DBRequest.addEventListener('error', function (event) {
+            // error 발생 시 실행되는 함수
+            // opne, upgradeneeded 등 모든 상황의 error에 실행 된다
+            const error = event.target.error;
+            console.log('error', error.name);
+        });
+
+
+        DBRequest.addEventListener('upgradeneeded', function (event) {
+            // 버전이 업그레이드 될 때 실행 됨.
+            console.log('upgradeneeded');
+
+            db = event.target.result;
+            // 생성된 DB의 ref를 전역변수 db에 담는다
+
+            let oldVersion = event.oldVersion;
+            // 최초 실행을 판단할 수 있다.
+            // .open('db식별자',1) 일 때 event.oldVersion = 0이 나타난다.
+
+            if (oldVersion < 1) {
+                // 최초 실행 시 objectStore를 생성한다.
+                // oldVersion == 0 < 1 [최초실행이면] 이라는 뜻이 된다.
+                db.createObjectStore('버스', { keyPath: 'id', autoIncrement: true });
+                db.createObjectStore('쉘터', { keyPath: 'id', autoIncrement: true });
+                // object store 생성
+                // db.createObjectStore('식별자', {keyPath:'id', autoIncrement:true});
+                // keyPath, autoIncrement는 생략 가능하다. [프라이머리 키 생성]
+            }
+            /*
+                objectStore추가가 필요하다면 if 문과 버전을 이용한다.
+                if(oldVersion < 2){
+                    db.createObjectStore('objectStoreName2', {keyPath:'id', autoIncrement:true});
+                }
+        
+                if(oldVersion < 3){
+                    db.createObjectStore('objectStoreName2', {keyPath:'id', autoIncrement:true});
+                } 
+            */
+        });
+
+    </script>
 </head>
+
 <body>
+
     <body>
         <div class="container">
             <header>
@@ -17,56 +80,62 @@
             </header>
             <nav>
                 <ul>
-                    <li><form action="http://localhost:3000/bus"><button type="submit">버스</button></form></li>
-                    <li><form action="http://localhost:3000/shelter"><button type="submit">정류장</button></form></li>
+                    <li>
+                        <form action="http://localhost:3000/bus"><button type="submit">버스</button></form>
+                    </li>
+                    <li>
+                        <form action="http://localhost:3000/shelter"><button type="submit">정류장</button></form>
+                    </li>
                 </ul>
             </nav>
             <div class="controller">
                 <form action="http://localhost:3000/bus/:strSrch" method="post">
-                    <label for="strSrch"></label><input type="text" name="strSrch" id="strSrch" placeholder="bus" onchange="this.form.submit()">
+                    <label for="strSrch"></label><input type="text" name="strSrch" id="strSrch" placeholder="bus"
+                        onchange="this.form.submit()">
                 </form>
             </div>
         </div>
 
         <div class="container">
             <hr>
-                <h1>Create New Book</h1>
+            <h1>Create New Book</h1>
             <hr>
-    
+
             <form action="http://localhost:3000/book" method="POST">
                 <div class="form-group">
                     <label for="exampleInputPassword1">ISBN</label>
                     <input class="form-control" name="isbn">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Title</label>
                     <input class="form-control" name="title">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Author</label>
                     <input class="form-control" name="author">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Published Date</label>
                     <input type="date" class="form-control" name="publish_date">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Publisher</label>
                     <input class="form-control" name="publisher">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="exampleInputPassword1">Number Of Pages</label>
                     <input type="number" class="form-control" name="numOfPages">
                 </div>
-    
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </body>
 </body>
+
 </html>

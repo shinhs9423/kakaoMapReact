@@ -1,0 +1,71 @@
+// 노선번호에 해당하는 노선 목록 조회 (strSrch[노선번호])
+ServiceResult {
+    comMsgHeader {
+    },
+    msgHeader {
+        headerCd : 0,
+        headerMsg : "정상처리되었습니다.",
+        itemCount : 1,
+    },
+    msgBody {
+        itemList : {
+            busRouteAbrv : 6002
+            busRouteId : 100100413,
+            busRouteNm : 6002,
+            corpNm : 공항리무진 02-2664-9898,
+            edStationNm : 청량리역,
+            firstBusTm : 20220905044000,
+            firstLowTm : ,
+            lastBusTm : 20220905230000,
+            lastBusYn : ,
+            lastLowTm : ,
+            length : 161.4,
+            routeType : 1,
+            stStationNm : 인천공항,
+            term : 55,
+        },
+        itemList : {
+            busRouteAbrv : 6003,
+            busRouteId : 100100414 ,
+            busRouteNm : 6003,
+            corpNm : 공항리무진 02-2664-9898,
+            edStationNm : 서울대학교,
+            firstBusTm : 20220905042000,
+            firstLowTm : ,
+            lastBusTm : 20220905224000,
+            lastBusYn : ,
+            lastLowTm : 20191105000000,
+            length : 156,
+            routeType : 1,
+            stStationNm: 인천공항,
+            term : 55,
+        }
+    }
+}
+
+// 노선의 지도상 경로를 리턴한다 (busRouteId[100100413])
+ServiceResult : {
+    comMsgHeader : {
+    },
+    msgHeader : {
+        headerCd : 0,
+        headerMsg : "정상처리되었습니다.",
+        itemCount : 1,
+    },
+    msgBody : {
+        itemList : {
+            no : 1,
+            gpsX : 126.433912009,
+            gpsY : 37.4685759197,
+            posX : 149928.6628026975,
+            posY : 441173.26107056066,
+        },
+        itemList : {
+            no : 2,
+            gpsX : 126.4340246618,
+            gpsY : 37.4686483,
+            posX : 149938.67546877547,
+            posY : 441181.2336609545,
+        },
+    }
+}

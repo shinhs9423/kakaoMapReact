@@ -66,13 +66,15 @@ app.get('/', (req, res) => {
             };
             busList.push(obj);
         }
-        console.log(busList);
+        // console.log(busList); // busList 확인
+        
+
         let template = "<div class='busListWrap'>";
         for (let i = 0; i < busList.length; i++) {
             template += `
             <div>
-                <h2>${busList[i].busRouteNm}</h2>
-                <h2>${busList[i].stStationNm}-${busList[i].edStationNm}</h2>
+                <span>${busList[i].busRouteNm}</span>
+                <span>${busList[i].stStationNm}-${busList[i].edStationNm}</span>
                 <button onclick="console.log('c')">추가하기</button>
             </div>
             `;

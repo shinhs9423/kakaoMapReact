@@ -1,0 +1,68 @@
+// 지역 코드(serviceKey, _type[xml,json])
+response :{
+    header : {
+        resultCode: 00,
+        resultMsg: OK
+    }
+    body : {
+        items : {
+            item : {
+                citycode: 12,
+                cityname: 세종특별시
+            }
+        }
+    }
+}
+
+// 버스 목록 조회(serviceKey, pageNo[1], numOfRows[99999], _type[xml,json], cityCode[12], routeNo[노선번호] )
+response : {
+    header :  {
+        resultCode : 00,
+        resultMsg : OK
+    },
+    body : {
+        items: {
+            item : {
+                routeid : DJB30300063,
+                routeno : 501, 
+                startnodenm : 비래동,
+                endnodenm : 마전,
+                routetp: 간선버스,
+                endvehicletime : 2230,
+                startvehicletime : 0550,
+            }
+        }
+    }
+}
+
+// 노선별경유정류소목록 조회 (serviceKey, pageNo[1], numOfRows[99999], _type[xml,json], cityCode[12], routeId[DJB30300063] )
+response : {
+    header : {
+        resultCode : 00,
+        resultMsg : OK
+    },
+    body : {
+        items : {
+            item : {
+                nodeid : DJB8001803,
+                nodenm : 비래동종점,
+                nodeno : 51590,
+                nodeord : 1,
+                routeid : DJB30300063,
+                gpslati : 36.500000,
+                gpslong : 127.250000,
+                updowncd : 0,
+            },
+            item : {
+                nodeid : DJB8001803,
+                nodenm : 비래동,
+                nodeno : 51570,
+                nodeord : 2,
+                routeid : DJB30300063,
+                gpslati : 36.500000,
+                gpslong : 127.250000,
+                updowncd : 0,
+            }
+        }
+    }
+}
